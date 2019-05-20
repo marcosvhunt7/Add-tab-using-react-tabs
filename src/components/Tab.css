@@ -1,0 +1,124 @@
+.Tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.TabList {
+  list-style: none;
+  margin: 0;
+  background-color: lightgray;
+  display: flex;
+  height: 72px;
+  align-items: flex-end;
+}
+
+.TabList li {
+  /* Makes a horizontal row */
+  float: left;
+
+  /* So the psueudo elements can be
+     abs. positioned inside */
+  position: relative;
+}
+.TabList div {
+  /* Make them block level
+     and only as wide as they need */
+  float: left;
+  padding: 20px 40px;
+  text-decoration: none;
+
+  /* Default colors */
+  color: black;
+  background: lightgray;
+
+  /* Only round the top corners */
+  -webkit-border-top-left-radius: 15px;
+  -webkit-border-top-right-radius: 15px;
+  -moz-border-radius-topleft: 15px;
+  -moz-border-radius-topright: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.TabList .Selected {
+  /* Highest, Selected tab is on top */
+  z-index: 3;
+}
+.TabList .Selected div {
+  /* Colors when tab is Selected */
+  background: white;
+  color: black;
+}
+.TabList li:before,
+.TabList li:after,
+.TabList li div:before,
+.TabList li div:after {
+  /* All pseudo elements are 
+     abs. positioned and on bottom */
+  position: absolute;
+  bottom: 0;
+}
+/* Only the first, last, and Selected
+   TabList need pseudo elements at all */
+.TabList li:last-child:after,
+.TabList li:last-child div:after,
+.TabList li:first-child:before,
+.TabList li:first-child div:before,
+.TabList .Selected:after,
+.TabList .Selected:before,
+.TabList .Selected div:after,
+.TabList .Selected div:before {
+  content: "";
+  background: lightgray;
+}
+.TabList .Selected:before,
+.TabList .Selected:after {
+  background: white;
+
+  /* Squares below circles */
+  z-index: 1;
+}
+/* Squares */
+.TabList li:before,
+.TabList li:after {
+  background: lightgray;
+  width: 10px;
+  height: 10px;
+}
+.TabList li:before {
+  left: -10px;
+}
+.TabList li:after {
+  right: -10px;
+}
+/* Circles */
+.TabList li div:after,
+.TabList li div:before {
+  width: 20px;
+  height: 20px;
+  /* Circles are circular */
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: #222;
+
+  /* Circles over squares */
+  z-index: 2;
+}
+.TabList .Selected div:after,
+.TabList .Selected div:before {
+  background: lightgray;
+}
+/* First and last TabList have different
+   outside color needs */
+.TabList li:first-child.Selected div:before,
+.TabList li:last-child.Selected div:after {
+  background: lightgray;
+}
+.TabList li div:before {
+  left: -20px;
+}
+.TabList li div:after {
+  right: -20px;
+}
